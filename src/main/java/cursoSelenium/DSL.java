@@ -6,12 +6,20 @@ import org.openqa.selenium.support.ui.Select;
 
 public class DSL {
 
+	//////////// DSL = DOMAIN SPECIFIC LANGUAGE ///////////////////
+	
+	//Serve para resolver os problemas especificos do dominio
+	
 	private WebDriver driver;
-
+	
+	
+	/// Inicia a variavel Driver para o WebDriver
 	public DSL(WebDriver driver) {
 		this.driver = driver;
 	}
-
+	
+	//////////// BOX ///////////////////
+	
 	public void escrever(String id_campo, String texto) {
 		driver.findElement(By.id(id_campo)).sendKeys(texto);
 
@@ -21,6 +29,7 @@ public class DSL {
 		return driver.findElement(By.id(id_campo)).getAttribute("value");
 	}
 
+	/////////////////// RADIO BUTTON /////////////////////
 	public void clickRadio(String id) {
 		driver.findElement(By.id(id)).click();
 	}
@@ -29,6 +38,8 @@ public class DSL {
 		return driver.findElement(By.id(id)).isSelected();
 	}
 
+	
+	///////////////// COMBO ////////////////////
 	public void selectCombo(String id, String valor) {
 		WebElement element = driver.findElement(By.id(id));
 		Select combo = new Select(element);
@@ -42,13 +53,17 @@ public class DSL {
 		return combo.getFirstSelectedOption().getText();
 	}
 
+	
+	//////////////  BUTTON /////////////////
 	public void clickButton(String id) {
 		driver.findElement(By.id(id)).click();
 	}
-
+	
 	public boolean isClicked(String id) {
 		return driver.findElement(By.id(id)).isSelected();
 	}
+	
+	
 	
 	public void clickLink(String link) {
 		driver.findElement(By.linkText(link)).click();

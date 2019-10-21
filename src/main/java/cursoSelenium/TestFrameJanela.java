@@ -56,10 +56,12 @@ public class TestFrameJanela {
 	@Test
 	public void testeJanelaHard(){
 		driver.findElement(By.id("buttonPopUpHard")).click();
-//		System.out.println(driver.getWindowHandle()); //janela atual
-//		System.out.println(driver.getWindowHandles()); //janelas ativas
+		System.out.println(driver.getWindowHandle()); //janela atual
+		System.out.println(driver.getWindowHandles()); //janelas ativas
 
-		driver.switchTo().window((String) driver.getWindowHandles().toArray()[1]);		
+		driver.switchTo().window((String) driver.getWindowHandles().toArray()[1]);	
+		System.out.println(driver.getWindowHandle()); //janela atual
+
 		driver.findElement(By.tagName("textarea")).sendKeys("funcionou");
 		driver.switchTo().window((String) driver.getWindowHandles().toArray()[0]);
 		driver.findElement(By.tagName("textarea")).sendKeys("funcionou também");

@@ -1,4 +1,5 @@
 package cursoSelenium;
+
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
@@ -35,8 +36,8 @@ public class DesafioCadastro {
 
 		String desafioNome = "José";
 
-		dsl.escrever("elementosForm:sobrenome","Teste");
-		Assert.assertEquals("Teste",  dsl.obterValorCampo("elementosForm:sobrenome"));
+		dsl.escrever("elementosForm:sobrenome", "Teste");
+		Assert.assertEquals("Teste", dsl.obterValorCampo("elementosForm:sobrenome"));
 
 		dsl.clickRadio("elementosForm:sexo:0");
 		Assert.assertTrue(dsl.isRadioMark("elementosForm:sexo:0"));
