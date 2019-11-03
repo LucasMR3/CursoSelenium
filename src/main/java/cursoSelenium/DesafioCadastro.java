@@ -31,18 +31,18 @@ public class DesafioCadastro {
 
 	@Test
 	public void CadastroCompleto() {
-		dsl.escrever("elementosForm:nome", "José");
-		Assert.assertEquals("José", dsl.obterValorCampo("elementosForm:nome"));
+		dsl.writeField("elementosForm:nome", "José");
+		Assert.assertEquals("José", dsl.getComboValue("elementosForm:nome"));
 
 		String desafioNome = "José";
 
-		dsl.escrever("elementosForm:sobrenome", "Teste");
-		Assert.assertEquals("Teste", dsl.obterValorCampo("elementosForm:sobrenome"));
+		dsl.writeField("elementosForm:sobrenome", "Teste");
+		Assert.assertEquals("Teste", dsl.getComboValue("elementosForm:sobrenome"));
 
 		dsl.clickRadio("elementosForm:sexo:0");
 		Assert.assertTrue(dsl.isRadioMark("elementosForm:sexo:0"));
 
-		dsl.clickButton("elementosForm:comidaFavorita:2");
+		dsl.clickButtonId("elementosForm:comidaFavorita:2");
 		Assert.assertTrue(dsl.isClicked("elementosForm:comidaFavorita:2"));
 
 		WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));

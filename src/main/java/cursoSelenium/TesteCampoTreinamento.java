@@ -33,14 +33,14 @@ public class TesteCampoTreinamento {
 
 	@Test
 	public void testTextField() {
-		dsl.escrever("elementosForm:nome", "Teste de Escrita");
-		Assert.assertEquals("Teste de Escrita", dsl.obterValorCampo("elementosForm:nome"));
+		dsl.writeField("elementosForm:nome", "Teste de Escrita");
+		Assert.assertEquals("Teste de Escrita", dsl.searchField("elementosForm:nome"));
 	}
 
 	@Test
 	public void testTextArea() {
-		dsl.escrever("elementosForm:sugestoes", "Teste de Escrita\n\nteste");
-		Assert.assertEquals("Teste de Escrita\n\nteste", dsl.obterValorCampo("elementosForm:sugestoes"));
+		dsl.writeField("elementosForm:sugestoes", "Teste de Escrita\n\nteste");
+		Assert.assertEquals("Teste de Escrita\n\nteste", dsl.searchField("elementosForm:sugestoes"));
 	}
 
 	@Test
@@ -59,7 +59,7 @@ public class TesteCampoTreinamento {
 	public void testCombo() {
 		dsl.selectCombo("elementosForm:escolaridade", "2o grau completo");
 
-		Assert.assertEquals("2o grau completo", dsl.obterCombo("elementosForm:escolaridade"));
+		Assert.assertEquals("2o grau completo", dsl.getComboValue("elementosForm:escolaridade"));
 	}
 
 	@Test
@@ -100,7 +100,7 @@ public class TesteCampoTreinamento {
 
 	@Test
 	public void interagirBotton() {
-		dsl.clickButton("buttonSimple");	
+		dsl.clickButtonId("buttonSimple");	
 
 		WebElement botao = driver.findElement(By.id("buttonSimple")); 
 		Assert.assertEquals("Obrigado!", botao.getAttribute("value"));
@@ -113,7 +113,7 @@ public class TesteCampoTreinamento {
 		dsl.clickLink("Voltar");
 		// Assert.fail();
 
-		Assert.assertEquals("Voltou!", dsl.obterTexto("resultado"));
+		Assert.assertEquals("Voltou!", dsl.getText("resultado"));
 	}
 
 	@Test
@@ -122,11 +122,11 @@ public class TesteCampoTreinamento {
 		// Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("Campo
 		// de Treinamento")); / metodo demorado
 
-		Assert.assertEquals("Campo de Treinamento", dsl.obterTexto(By.tagName("h3")));
+		Assert.assertEquals("Campo de Treinamento", dsl.getText(By.tagName("h3")));
 		// metodo rapido
 
 		Assert.assertEquals("Cuidado onde clica, muitas armadilhas...",
-				dsl.obterTexto(By.className("facilAchar")));
+				dsl.getText(By.className("facilAchar")));
 	}
 
 }
