@@ -32,13 +32,11 @@ public class DesafioCadastro {
 	@Test
 	public void CadastroCompleto() {
 		dsl.writeField("elementosForm:nome", "José");
-		Assert.assertEquals("José", dsl.getComboValue("elementosForm:nome"));
-
-		String desafioNome = "José";
+		dsl.checkField("José", "elementosForm:nome");
 
 		dsl.writeField("elementosForm:sobrenome", "Teste");
-		Assert.assertEquals("Teste", dsl.getComboValue("elementosForm:sobrenome"));
-
+		dsl.checkField("Teste", "elementosForm:sobrenome");
+		
 		dsl.clickRadio("elementosForm:sexo:0");
 		Assert.assertTrue(dsl.isRadioMark("elementosForm:sexo:0"));
 
@@ -46,8 +44,8 @@ public class DesafioCadastro {
 		Assert.assertTrue(dsl.isClicked("elementosForm:comidaFavorita:2"));
 
 		WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));
-		Select combo = new Select(element);
-		combo.selectByVisibleText("Superior");
+		Select combo1 = new Select(element);
+		combo1.selectByVisibleText("Superior");
 
 		new Select(driver.findElement(By.id("elementosForm:esportes"))).selectByVisibleText("Natacao");
 
@@ -59,7 +57,7 @@ public class DesafioCadastro {
 
 		// Assert.assertEquals("Nome: José",
 		// driver.findElement(By.id("descNome")).getText());
-		Assert.assertEquals(desafioNome, driver.findElement(By.xpath("//*[@id=\"descNome\"]/span")).getText());
+		Assert.assertEquals("José", driver.findElement(By.xpath("//*[@id=\"descNome\"]/span")).getText());
 		// Assert.assertEquals("Nome: José",
 		// driver.findElement(By.xpath("/html/body/center/div[2]/div[1]")).getText());
 
