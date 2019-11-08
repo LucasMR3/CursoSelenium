@@ -6,9 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
 
 public class DesafioCadastro {
 
@@ -38,21 +36,20 @@ public class DesafioCadastro {
 		dsl.checkField("Teste", "elementosForm:sobrenome");
 		
 		dsl.clickRadio("elementosForm:sexo:0");
-		Assert.assertTrue(dsl.isRadioMark("elementosForm:sexo:0"));
+		dsl.isRadioMarked("elementosForm:sexo:0");
 
 		dsl.clickButtonId("elementosForm:comidaFavorita:2");
-		Assert.assertTrue(dsl.isClicked("elementosForm:comidaFavorita:2"));
+		dsl.isClicked("elementosForm:comidaFavorita:2");
+		
+		dsl.selectCombo("elementosForm:escolaridade", "Superior");
+		dsl.checkCombo1Selected("elementosForm:escolaridade", "Superior");
 
-		WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));
-		Select combo1 = new Select(element);
-		combo1.selectByVisibleText("Superior");
-
-		new Select(driver.findElement(By.id("elementosForm:esportes"))).selectByVisibleText("Natacao");
-
-		driver.findElement(By.id("elementosForm:sugestoes")).sendKeys("Sem sugestoes");
-		Assert.assertEquals("Sem sugestoes",
-				driver.findElement(By.id("elementosForm:sugestoes")).getAttribute("value"));
-
+		dsl.selectCombo("elementosForm:esportes", "Natacao");
+		dsl.checkCombo1Selected("elementosForm:esportes", "Natacao");
+		
+		dsl.writeField("elementosForm:sugestoes", "Sem sugestoes");
+		dsl.checkField("Sem sugestoes", "elementosForm:sugestoes");
+	
 		driver.findElement(By.id("elementosForm:cadastrar")).click();
 
 		// Assert.assertEquals("Nome: José",

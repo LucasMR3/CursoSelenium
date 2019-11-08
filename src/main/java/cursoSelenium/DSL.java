@@ -29,8 +29,8 @@ public class DSL {
 		return driver.findElement(By.id(id_field)).getAttribute("value");
 	}
 
-	public void checkField(String field, String id_field) {
-		Assert.assertEquals(field, searchField(id_field));
+	public void checkField(String fieldTxt, String id_field) {
+		Assert.assertEquals(fieldTxt, searchField(id_field));
 	}
 
 	/////////////////// RADIO BUTTON /////////////////////
@@ -38,24 +38,32 @@ public class DSL {
 		driver.findElement(By.id(id)).click();
 	}
 
-	public boolean isRadioMark(String id) {
+	public void findRadioMarked(String id) {
+		Assert.assertTrue(isRadioMarked(id));
+	}
+	
+	public boolean isRadioMarked(String id) {
 		return driver.findElement(By.id(id)).isSelected();
 	}
 
 	///////////////// COMBO ////////////////////
-	public void selectCombo(String id, String value) {
-		WebElement element = driver.findElement(By.id(id));
-		Select combo = new Select(element);
+	public void selectCombo(String id, String visibleTxt) {
 		// combo.selectByIndex(3); // combo.selectByValue("superior");
-		combo.selectByVisibleText(value);
+		new Select(driver.findElement(By.id(id))).selectByVisibleText(visibleTxt);
 	}
 
-	public String getComboValue(String id) {
+	public String getComboValueSelected(String id) {
 		WebElement element = driver.findElement(By.id(id));
 		Select combo = new Select(element);
 		return combo.getFirstSelectedOption().getText();
 	}
-
+	
+	public void checkCombo1Selected (String idCombo, String visibleTxt) {
+		WebElement element = driver.findElement(By.id(idCombo));
+		Select combo = new Select(element);
+		Assert.assertEquals(combo.getFirstSelectedOption().getText(), visibleTxt);
+	}
+	
 	////////////// BUTTON /////////////////
 	public void clickButtonId(String id) {
 		driver.findElement(By.id(id)).click();
@@ -65,10 +73,15 @@ public class DSL {
 		driver.findElement(By.xpath(xpath)).click();
 	}
 
-	public boolean isClicked(String id) {
+	public boolean ifIsClicked(String id) {
 		return driver.findElement(By.id(id)).isSelected();
 	}
-
+	
+	public void isClicked(String id) {
+		Assert.assertTrue(ifIsClicked(id));
+	}
+	
+	
 	public void clickLink(String link) {
 		driver.findElement(By.linkText(link)).click();
 

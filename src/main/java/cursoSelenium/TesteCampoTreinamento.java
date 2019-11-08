@@ -46,20 +46,19 @@ public class TesteCampoTreinamento {
 	@Test
 	public void testRadioButton() {
 		dsl.clickRadio("elementosForm:sexo:0");
-		Assert.assertTrue(dsl.isRadioMark("elementosForm:sexo:0"));
+		dsl.isRadioMarked("elementosForm:sexo:0");
 	}
 
 	@Test
 	public void testCheckBox(){
 		dsl.clickRadio("elementosForm:comidaFavorita:2");
-		Assert.assertTrue(dsl.isRadioMark("elementosForm:comidaFavorita:2"));
+		dsl.isRadioMarked("elementosForm:comidaFavorita:2");
 	}
 
 	@Test
 	public void testCombo() {
 		dsl.selectCombo("elementosForm:escolaridade", "2o grau completo");
-
-		Assert.assertEquals("2o grau completo", dsl.getComboValue("elementosForm:escolaridade"));
+		dsl.checkCombo1Selected("elementosForm:escolaridade", "2o grau completo");
 	}
 
 	@Test
