@@ -13,12 +13,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class TestAlert {
 
 	private WebDriver driver;
-
+	private DSL dsl;
+	
 	@Before
 	public void inicializaSelenium() {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		dsl = new DSL(driver);
 	}
 
 	@After
@@ -28,19 +30,21 @@ public class TestAlert {
 
 	@Test
 	public void interagirAlertSimple() {
-		driver.findElement(By.id("alert")).click();
+		dsl.clickButtonId("alert");
+			
 		Alert alert = driver.switchTo().alert();
-
 		String texto = alert.getText();
-
-		Assert.assertEquals("Alert Simples", texto);
-
+		dsl.checkFieldNoSearch("Alert Simples", texto);
+		
+		
 		alert.accept();
 	}
 
 	@Test
 	public void interagirAlertDuplo() {
 		driver.findElement(By.id("confirm")).click();
+		
+		
 		Alert alert = driver.switchTo().alert();
 
 		Assert.assertEquals("Confirm Simples", alert.getText());

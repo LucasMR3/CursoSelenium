@@ -32,6 +32,10 @@ public class DSL {
 	public void checkField(String fieldTxt, String id_field) {
 		Assert.assertEquals(fieldTxt, searchField(id_field));
 	}
+	
+	public void checkFieldNoSearch(String fieldTxt, String id_field) {
+		Assert.assertEquals(fieldTxt, id_field);
+	}
 
 	/////////////////// RADIO BUTTON /////////////////////
 	public void clickRadio(String id) {

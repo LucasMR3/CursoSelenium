@@ -117,7 +117,7 @@ public class TesteCampoTreinamento {
 
 	@Test
 	public void buscarTextoTela() {
-		System.out.println(driver.findElement(By.tagName("body")).getText());
+		//System.out.println(driver.findElement(By.tagName("body")).getText());
 		// Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("Campo
 		// de Treinamento")); / metodo demorado
 
