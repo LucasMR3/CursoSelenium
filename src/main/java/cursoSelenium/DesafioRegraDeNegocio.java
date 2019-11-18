@@ -3,20 +3,22 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.Select;
 
 public class DesafioRegraDeNegocio {
 
 	private WebDriver driver;
+	private DSL dsl;
+	private CampoTreinamentoPage page;
 
 	@Before
 	public void inicializaSelenium() {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		dsl = new DSL(driver);
+		page = new CampoTreinamentoPage(driver);
 	}
 
 	@After
@@ -26,36 +28,35 @@ public class DesafioRegraDeNegocio {
 	
 	@Test
 	public void desafioRegras() {
-		driver.findElement(By.id("elementosForm:cadastrar")).click(); // cadastrar
+		page.register();
 
 		Alert alerta = driver.switchTo().alert();
 		alerta.accept();
 
 		// driver.findElement(By.id("prompt")).click();
 
-		driver.findElement(By.id("elementosForm:nome")).sendKeys("José");
-		driver.findElement(By.id("elementosForm:cadastrar")).click(); // cadastrar
+		page.setName("José");
+		page.register();
 		alerta.accept(); //aceitar alerta
 		
-		driver.findElement(By.id("elementosForm:sobrenome")).sendKeys("Teste");
-		driver.findElement(By.id("elementosForm:cadastrar")).click(); // cadastrar
+		page.setLastName("Teste");
+		page.register();
+		alerta.accept();
+		
+		page.setGenderMale();
+		
+		page.setFavoriteFoodCarne();
+		page.setFavoriteFoodVeg();
+		page.register();
 		alerta.accept(); //aceitar alerta
 		
-		driver.findElement(By.id("elementosForm:sexo:0")).click();
+		page.setFavoriteFoodCarne();
 		
-		driver.findElement(By.id("elementosForm:comidaFavorita:0")).click();
-		driver.findElement(By.id("elementosForm:comidaFavorita:3")).click();
-		driver.findElement(By.id("elementosForm:cadastrar")).click();
-		alerta.accept(); //aceitar alerta
-		
-		driver.findElement(By.id("elementosForm:comidaFavorita:0")).click();
-		
-		new Select(driver.findElement(By.id("elementosForm:esportes"))).selectByVisibleText("Natacao");		
-		new Select(driver.findElement(By.id("elementosForm:esportes"))).selectByVisibleText("O que eh esporte?");		
-		driver.findElement(By.id("elementosForm:cadastrar")).click();
-		alerta.accept(); //aceitar alerta
-		new Select(driver.findElement(By.id("elementosForm:esportes"))).deselectByVisibleText("Natacao");
-		driver.findElement(By.id("elementosForm:cadastrar")).click();
+		page.setFavoriteSports("Natacao","O que eh esporte?");
+		page.register();
+		alerta.accept();
+		dsl.deselectComboVisibleTxt("elementosForm:esportes", "Natacao");
+		page.register();
 	}
 
 }

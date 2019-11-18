@@ -1,4 +1,5 @@
 package cursoSelenium;
+
 import java.util.List;
 
 import org.junit.After;
@@ -13,7 +14,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
 public class TesteCampoTreinamento {
-	
+
 	private WebDriver driver;
 	private DSL dsl;
 
@@ -34,13 +35,13 @@ public class TesteCampoTreinamento {
 	@Test
 	public void testTextField() {
 		dsl.writeField("elementosForm:nome", "Teste de Escrita");
-		Assert.assertEquals("Teste de Escrita", dsl.searchField("elementosForm:nome"));
+		dsl.checkFieldEq("Teste de Escrita", "elementosForm:nome");
 	}
 
 	@Test
 	public void testTextArea() {
 		dsl.writeField("elementosForm:sugestoes", "Teste de Escrita\n\nteste");
-		Assert.assertEquals("Teste de Escrita\n\nteste", dsl.searchField("elementosForm:sugestoes"));
+		dsl.checkFieldEq("Teste de Escrita\n\nteste", "elementosForm:sugestoes");
 	}
 
 	@Test
@@ -50,14 +51,14 @@ public class TesteCampoTreinamento {
 	}
 
 	@Test
-	public void testCheckBox(){
+	public void testCheckBox() {
 		dsl.clickRadio("elementosForm:comidaFavorita:2");
 		dsl.isRadioMarked("elementosForm:comidaFavorita:2");
 	}
 
 	@Test
 	public void testCombo() {
-		dsl.selectCombo("elementosForm:escolaridade", "2o grau completo");
+		dsl.selectComboVisibleTxt("elementosForm:escolaridade", "2o grau completo");
 		dsl.checkCombo1Selected("elementosForm:escolaridade", "2o grau completo");
 	}
 
@@ -75,16 +76,15 @@ public class TesteCampoTreinamento {
 			if (option.getText().equals("Mestrado")) {
 				encontrou = true;
 			}
-
 		}
 		Assert.assertTrue(encontrou);
 	}
 
 	@Test
 	public void verificarMultCombo() {
-		dsl.selectCombo("elementosForm:esportes", "Natacao");
-		dsl.selectCombo("elementosForm:esportes", "Corrida");
-		dsl.selectCombo("elementosForm:esportes", "O que eh esporte?");
+		dsl.selectComboVisibleTxt("elementosForm:esportes", "Natacao");
+		dsl.selectComboVisibleTxt("elementosForm:esportes", "Corrida");
+		dsl.selectComboVisibleTxt("elementosForm:esportes", "O que eh esporte?");
 
 		WebElement element = driver.findElement(By.id("elementosForm:esportes"));
 		Select combo = new Select(element);
@@ -92,16 +92,16 @@ public class TesteCampoTreinamento {
 		List<WebElement> allSelectedOptions = combo.getAllSelectedOptions();
 		Assert.assertEquals(3, allSelectedOptions.size());
 
-		combo.deselectByVisibleText("Corrida");
+		dsl.deselectComboVisibleTxt("elementosForm:esportes", "Corrida");
 		allSelectedOptions = combo.getAllSelectedOptions();
 		Assert.assertEquals(2, allSelectedOptions.size());
 	}
 
 	@Test
 	public void interagirBotton() {
-		dsl.clickButtonId("buttonSimple");	
+		dsl.clickButtonId("buttonSimple");
 
-		WebElement botao = driver.findElement(By.id("buttonSimple")); 
+		WebElement botao = driver.findElement(By.id("buttonSimple"));
 		Assert.assertEquals("Obrigado!", botao.getAttribute("value"));
 	}
 
@@ -117,22 +117,14 @@ public class TesteCampoTreinamento {
 
 	@Test
 	public void buscarTextoTela() {
-		//System.out.println(driver.findElement(By.tagName("body")).getText());
+		// System.out.println(driver.findElement(By.tagName("body")).getText());
 		// Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("Campo
 		// de Treinamento")); / metodo demorado
 
 		Assert.assertEquals("Campo de Treinamento", dsl.getText(By.tagName("h3")));
 		// metodo rapido
 
-		Assert.assertEquals("Cuidado onde clica, muitas armadilhas...",
-				dsl.getText(By.className("facilAchar")));
+		Assert.assertEquals("Cuidado onde clica, muitas armadilhas...", dsl.getText(By.className("facilAchar")));
 	}
 
 }
-	
-	
-	
-	
-	
-	
-	

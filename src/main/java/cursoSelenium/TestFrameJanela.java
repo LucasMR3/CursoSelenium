@@ -12,12 +12,14 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class TestFrameJanela {
 
 	private WebDriver driver;
+	private DSL dsl;
 	
 	@Before
 	public void inicializaSelenium() {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		dsl = new DSL(driver);
 	}
 
 	@After
@@ -29,7 +31,7 @@ public class TestFrameJanela {
 	
 	public void testeFrame() {
 		driver.switchTo().frame("frame1"); // frame
-		driver.findElement(By.id("frameButton")).click();
+		dsl.clickButtonId("frameButton");
 
 		Alert alert = driver.switchTo().alert();
 		String messageAlert = alert.getText();
@@ -42,7 +44,7 @@ public class TestFrameJanela {
 
 	@Test
 	public void testeJanela() {
-		driver.findElement(By.id("buttonPopUpEasy")).click();
+		dsl.clickButtonId("buttonPopUpEasy");
 
 		driver.switchTo().window("Popup");
 		driver.findElement(By.tagName("textarea")).sendKeys("deu certo?");

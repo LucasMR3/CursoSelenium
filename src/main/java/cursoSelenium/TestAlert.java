@@ -34,7 +34,7 @@ public class TestAlert {
 			
 		Alert alert = driver.switchTo().alert();
 		String texto = alert.getText();
-		dsl.checkFieldNoSearch("Alert Simples", texto);
+		dsl.checkField("Alert Simples", texto);
 		
 		
 		alert.accept();
@@ -47,9 +47,9 @@ public class TestAlert {
 		
 		Alert alert = driver.switchTo().alert();
 
-		Assert.assertEquals("Confirm Simples", alert.getText());
+		dsl.checkField("Confirm Simples", alert.getText());
 		alert.dismiss();
-		Assert.assertEquals("Negado", alert.getText());
+		dsl.checkField("Negado", alert.getText());
 		alert.accept();
 		}
 
@@ -57,8 +57,8 @@ public class TestAlert {
 	public void interagirAlertPrompt() {
 		driver.findElement(By.id("prompt")).click();
 		Alert alerta = driver.switchTo().alert();
-
-		Assert.assertEquals("Digite um numero", alerta.getText());
+		
+		dsl.checkField("Digite um numero", alerta.getText());
 		alerta.sendKeys("12");
 		alerta.accept();
 		Assert.assertEquals("Era 12?", alerta.getText());

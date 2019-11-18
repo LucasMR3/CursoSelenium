@@ -29,11 +29,11 @@ public class DSL {
 		return driver.findElement(By.id(id_field)).getAttribute("value");
 	}
 
-	public void checkField(String fieldTxt, String id_field) {
-		Assert.assertEquals(fieldTxt, searchField(id_field));
+	public void checkFieldEq(String fieldTxt, String searchId_field) {
+		Assert.assertEquals(fieldTxt, searchField(searchId_field));
 	}
 	
-	public void checkFieldNoSearch(String fieldTxt, String id_field) {
+	public void checkField(String fieldTxt, String id_field) {
 		Assert.assertEquals(fieldTxt, id_field);
 	}
 
@@ -51,7 +51,7 @@ public class DSL {
 	}
 
 	///////////////// COMBO ////////////////////
-	public void selectCombo(String id, String visibleTxt) {
+	public void selectComboVisibleTxt(String id, String visibleTxt) {
 		// combo.selectByIndex(3); // combo.selectByValue("superior");
 		new Select(driver.findElement(By.id(id))).selectByVisibleText(visibleTxt);
 	}
@@ -66,6 +66,10 @@ public class DSL {
 		WebElement element = driver.findElement(By.id(idCombo));
 		Select combo = new Select(element);
 		Assert.assertEquals(combo.getFirstSelectedOption().getText(), visibleTxt);
+	}
+	
+	public void deselectComboVisibleTxt(String id, String visibleTxt) {
+		new Select(driver.findElement(By.id(id))).deselectByVisibleText(visibleTxt);
 	}
 	
 	////////////// BUTTON /////////////////
@@ -94,11 +98,15 @@ public class DSL {
 	public String getText(By by) {
 		return driver.findElement(by).getText();
 	}
-
+	
 	public String getText(String id) {
 		return getText(By.id(id));
 	}
-
+	
+	public String getTextXPath(String xpath){
+		return driver.findElement(By.xpath(xpath)).getText();
+	}
+	
 	public void waitSleep(int timeSec) {
 		try {
 			Thread.sleep(timeSec);
