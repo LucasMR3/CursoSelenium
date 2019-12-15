@@ -14,20 +14,22 @@ public class TesteGoogle {
 	//	System.setProperty("webdriver.chrome.driver", "C:/SeleniumDrivers/chromedriver.exe");
 	//	System.setProperty("webdriver.ie.driver", "C:/SeleniumDrivers/IEDriverServer.exe");
 	//	WebDriver driver = new FirefoxDriver();
-		WebDriver driver = new ChromeDriver();
+	//	WebDriver driver = new ChromeDriver();
 	//	DesiredCapabilities caps = DesiredCapabilities.internetExplorer();
 	//	caps.setCapability("ignoreZoomSetting", true);
 		
 	//@SuppressWarnings("deprecation")
 	//WebDriver driver = new InternetExplorerDriver(caps);
 		
-		private DSL dsl;
+	private WebDriver driver;
+	private DSL dsl;
 	
 	@Before
 	public void inicializaSelenium() {
 		driver = new ChromeDriver();
+		driver.get("http://www.google.com");
 		driver.manage().window().maximize();
-		driver.get("file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
+		//driver.manage().window().setSize(new Dimension(1920,1080));
 		dsl = new DSL(driver);
 	}
 	
@@ -38,9 +40,6 @@ public class TesteGoogle {
 	
 	@Test
 	public void teste() {
-		//driver.manage().window().setSize(new Dimension(1920,1080));
-		driver.manage().window().maximize();
-		driver.get("http://www.google.com");
 		System.out.println(driver.getTitle());
 		dsl.checkField("Google", driver.getTitle());
 	}
