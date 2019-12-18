@@ -25,12 +25,19 @@ public class DSL {
 		driver.findElement(By.id(id_field)).sendKeys(text);
 	}
 
-	public String searchField(String id_field) {
+	public String searchFieldByValue(String id_field) {
 		return driver.findElement(By.id(id_field)).getAttribute("value");
 	}
+	public String searchFieldGetText(String id_field) {
+		return driver.findElement(By.id(id_field)).getText();
+	}
 
-	public void checkFieldEq(String fieldTxt, String searchId_field) {
-		Assert.assertEquals(fieldTxt, searchField(searchId_field));
+	public void checkFieldEqValue(String fieldTxt, String searchIdFieldValue) {
+		Assert.assertEquals(fieldTxt, searchFieldByValue(searchIdFieldValue));
+	}
+	
+	public void checkFieldEqText(String fieldTxt, String searchIdFieldTxt) {
+		Assert.assertEquals(fieldTxt, searchFieldGetText(searchIdFieldTxt));
 	}
 	
 	public void checkField(String fieldTxt, String id_field) {

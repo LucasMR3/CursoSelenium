@@ -35,13 +35,13 @@ public class TesteCampoTreinamento {
 	@Test
 	public void testTextField() {
 		dsl.writeField("elementosForm:nome", "Teste de Escrita");
-		dsl.checkFieldEq("Teste de Escrita", "elementosForm:nome");
+		dsl.checkFieldEqValue("Teste de Escrita", "elementosForm:nome");
 	}
 
 	@Test
 	public void testTextArea() {
 		dsl.writeField("elementosForm:sugestoes", "Teste de Escrita\n\nteste");
-		dsl.checkFieldEq("Teste de Escrita\n\nteste", "elementosForm:sugestoes");
+		dsl.checkFieldEqValue("Teste de Escrita\n\nteste", "elementosForm:sugestoes");
 	}
 
 	@Test
