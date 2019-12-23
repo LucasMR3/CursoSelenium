@@ -9,13 +9,13 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class TestFrameJanela {
+public class TestFrameWindow {
 
 	private WebDriver driver;
 	private DSL dsl;
 	
 	@Before
-	public void inicializaSelenium() {
+	public void startsSelenium() {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
@@ -23,7 +23,7 @@ public class TestFrameJanela {
 	}
 
 	@After
-	public void finalizaSelenium() {
+	public void endsSelenium() {
 		driver.quit();
 	}
 	
