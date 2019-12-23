@@ -1,4 +1,4 @@
-package cursoSelenium;
+package learningSelenium;
 
 import org.openqa.selenium.WebDriver;
 

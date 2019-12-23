@@ -1,4 +1,4 @@
-package cursoSelenium;
+package learningSelenium;
 
 import org.junit.After;
 import org.junit.Before;

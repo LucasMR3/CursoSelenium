@@ -1,4 +1,4 @@
-package cursoSelenium;
+package learningSelenium;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package cursoSelenium;
+package learningSelenium;
 
 import org.junit.Assert;
 import org.openqa.selenium.Alert;
@@ -11,7 +11,7 @@ public class DSL {
 
 	//////////// DSL = DOMAIN SPECIFIC LANGUAGE ///////////////////
 
-	// Serve para resolver os problemas especificos do dominio
+	// Resolver os problemas especificos do dominio
 
 	private WebDriver driver;
 
