@@ -2,11 +2,11 @@ package cursoSelenium;
 
 import org.openqa.selenium.WebDriver;
 
-public class CampoTreinamentoPage {
+public class TrainingCampPage {
 
 	private DSL dsl;
 
-	public CampoTreinamentoPage(WebDriver driver) {
+	public TrainingCampPage(WebDriver driver) {
 		dsl = new DSL(driver);
 	}
 

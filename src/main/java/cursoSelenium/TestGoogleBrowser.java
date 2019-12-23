@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 //import org.openqa.selenium.remote.DesiredCapabilities;
 
 
-public class TesteGoogle {
+public class TestGoogleBrowser {
 	//	System.setProperty("webdriver.gecko.driver", "C:/SeleniumDrivers/geckodriver.exe");
 	//	System.setProperty("webdriver.chrome.driver", "C:/SeleniumDrivers/chromedriver.exe");
 	//	System.setProperty("webdriver.ie.driver", "C:/SeleniumDrivers/IEDriverServer.exe");
@@ -25,7 +25,7 @@ public class TesteGoogle {
 	private DSL dsl;
 	
 	@Before
-	public void inicializaSelenium() {
+	public void startsSelenium() {
 		driver = new ChromeDriver();
 		driver.get("http://www.google.com");
 		driver.manage().window().maximize();
@@ -34,7 +34,7 @@ public class TesteGoogle {
 	}
 	
 	@After
-	public void finalizaSelenium() {
+	public void endsSelenium() {
 		driver.quit();
 	}
 	

@@ -13,13 +13,13 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 
-public class TesteCampoTreinamento {
+public class TestTrainingField {
 
 	private WebDriver driver;
 	private DSL dsl;
 
 	@Before
-	public void inicializaSelenium() {
+	public void startsSelenium() {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
@@ -28,7 +28,7 @@ public class TesteCampoTreinamento {
 	}
 
 	@After
-	public void finalizaSelenium() {
+	public void endsSelenium() {
 		driver.quit();
 	}
 
@@ -63,7 +63,7 @@ public class TesteCampoTreinamento {
 	}
 
 	@Test
-	public void verificarCombo() {
+	public void checkCombo() {
 		WebElement element = driver.findElement(By.id("elementosForm:escolaridade"));
 		Select combo = new Select(element);
 		List<WebElement> options = combo.getOptions();
@@ -81,7 +81,7 @@ public class TesteCampoTreinamento {
 	}
 
 	@Test
-	public void verificarMultCombo() {
+	public void checkMultCombo() {
 		dsl.selectComboVisibleTxt("elementosForm:esportes", "Natacao");
 		dsl.selectComboVisibleTxt("elementosForm:esportes", "Corrida");
 		dsl.selectComboVisibleTxt("elementosForm:esportes", "O que eh esporte?");
@@ -98,7 +98,7 @@ public class TesteCampoTreinamento {
 	}
 
 	@Test
-	public void interagirBotton() {
+	public void interactButton() {
 		dsl.clickButtonId("buttonSimple");
 
 		WebElement botao = driver.findElement(By.id("buttonSimple"));
@@ -108,7 +108,7 @@ public class TesteCampoTreinamento {
 	@Test
 
 	// @Ignore
-	public void interagirLink() {
+	public void interactLink() {
 		dsl.clickLink("Voltar");
 		// Assert.fail();
 
@@ -116,7 +116,7 @@ public class TesteCampoTreinamento {
 	}
 
 	@Test
-	public void buscarTextoTela() {
+	public void searchTextOnScreen() {
 		// System.out.println(driver.findElement(By.tagName("body")).getText());
 		// Assert.assertTrue(driver.findElement(By.tagName("body")).getText().contains("Campo
 		// de Treinamento")); / metodo demorado

@@ -16,7 +16,7 @@ public class TestAlert {
 	private DSL dsl;
 	
 	@Before
-	public void inicializaSelenium() {
+	public void startsSelenium() {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
@@ -24,29 +24,26 @@ public class TestAlert {
 	}
 
 	@After
-	public void finalizaSelenium() {
+	public void endsSelenium() {
 		driver.quit();
 	}
 
 	@Test
-	public void interagirAlertSimple() {
+	public void interactAlertSimple() {
 		dsl.clickButtonId("alert");
 			
 		Alert alert = driver.switchTo().alert();
-		String texto = alert.getText();
-		dsl.checkField("Alert Simples", texto);
+		String text = alert.getText();
+		dsl.checkField("Alert Simples", text);
 		
 		
 		alert.accept();
 	}
 
 	@Test
-	public void interagirAlertDuplo() {
+	public void interactAlertDual() {
 		driver.findElement(By.id("confirm")).click();
-		
-		
 		Alert alert = driver.switchTo().alert();
-
 		dsl.checkField("Confirm Simples", alert.getText());
 		alert.dismiss();
 		dsl.checkField("Negado", alert.getText());
@@ -54,16 +51,16 @@ public class TestAlert {
 		}
 
 	@Test
-	public void interagirAlertPrompt() {
+	public void interactAlertPrompt() {
 		driver.findElement(By.id("prompt")).click();
-		Alert alerta = driver.switchTo().alert();
+		Alert alert = driver.switchTo().alert();
 		
-		dsl.checkField("Digite um numero", alerta.getText());
-		alerta.sendKeys("12");
-		alerta.accept();
-		Assert.assertEquals("Era 12?", alerta.getText());
-		alerta.accept();
-		assertEquals(":D", alerta.getText());
+		dsl.checkField("Digite um numero", alert.getText());
+		alert.sendKeys("12");
+		alert.accept();
+		Assert.assertEquals("Era 12?", alert.getText());
+		alert.accept();
+		assertEquals(":D", alert.getText());
 	}
 
 }

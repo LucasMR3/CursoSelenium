@@ -7,29 +7,29 @@ import org.junit.Test;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-public class DesafioCadastro {
+public class ChallengeRegister {
 
 	private WebDriver driver;
 	private DSL dsl;
-	private CampoTreinamentoPage page;
+	private TrainingCampPage page;
 
 	@Before
-	public void inicializaSelenium() {
+	public void startsSelenium() {
 		driver = new ChromeDriver();
 		driver.manage().window().maximize();
 		driver.get("file://" + System.getProperty("user.dir") + "/src/main/resources/componentes.html");
 		dsl = new DSL(driver);
-		page = new CampoTreinamentoPage(driver);
+		page = new TrainingCampPage(driver);
 
 	}
 
 	@After
-	public void finalizaSelenium() {
+	public void endsSelenium() {
 		driver.quit();
 	}
 
 	@Test
-	public void Cadastro() {
+	public void Register() {
 		page.setName("José");
 		dsl.checkFieldEqValue("José", "elementosForm:nome");
 
