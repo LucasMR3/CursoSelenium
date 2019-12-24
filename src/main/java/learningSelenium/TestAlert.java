@@ -1,4 +1,5 @@
 package learningSelenium;
+
 import static org.junit.Assert.assertEquals;
 
 import org.junit.After;
@@ -14,7 +15,7 @@ public class TestAlert {
 
 	private WebDriver driver;
 	private DSL dsl;
-	
+
 	@Before
 	public void startsSelenium() {
 		driver = new ChromeDriver();
@@ -31,12 +32,11 @@ public class TestAlert {
 	@Test
 	public void interactAlertSimple() {
 		dsl.clickButtonId("alert");
-			
+
 		Alert alert = driver.switchTo().alert();
 		String text = alert.getText();
 		dsl.checkField("Alert Simples", text);
-		
-		
+
 		alert.accept();
 	}
 
@@ -48,13 +48,13 @@ public class TestAlert {
 		alert.dismiss();
 		dsl.checkField("Negado", alert.getText());
 		alert.accept();
-		}
+	}
 
 	@Test
 	public void interactAlertPrompt() {
 		driver.findElement(By.id("prompt")).click();
 		Alert alert = driver.switchTo().alert();
-		
+
 		dsl.checkField("Digite um numero", alert.getText());
 		alert.sendKeys("12");
 		alert.accept();

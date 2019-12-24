@@ -13,7 +13,7 @@ public class TestFrameWindow {
 
 	private WebDriver driver;
 	private DSL dsl;
-	
+
 	@Before
 	public void startsSelenium() {
 		driver = new ChromeDriver();
@@ -26,9 +26,9 @@ public class TestFrameWindow {
 	public void endsSelenium() {
 		driver.quit();
 	}
-	
+
 	@Test
-	
+
 	public void testeFrame() {
 		driver.switchTo().frame("frame1"); // frame
 		dsl.clickButtonId("frameButton");
@@ -56,13 +56,13 @@ public class TestFrameWindow {
 	}
 
 	@Test
-	public void testeJanelaHard(){
+	public void testeJanelaHard() {
 		driver.findElement(By.id("buttonPopUpHard")).click();
-		System.out.println(driver.getWindowHandle()); //janela atual
-		System.out.println(driver.getWindowHandles()); //janelas ativas
+		System.out.println(driver.getWindowHandle()); // janela atual
+		System.out.println(driver.getWindowHandles()); // janelas ativas
 
-		driver.switchTo().window((String) driver.getWindowHandles().toArray()[1]);	
-		System.out.println(driver.getWindowHandle()); //janela atual
+		driver.switchTo().window((String) driver.getWindowHandles().toArray()[1]);
+		System.out.println(driver.getWindowHandle()); // janela atual
 
 		driver.findElement(By.tagName("textarea")).sendKeys("funcionou");
 		driver.switchTo().window((String) driver.getWindowHandles().toArray()[0]);

@@ -21,34 +21,36 @@ public class TrainingCampPage {
 	public void setGenderMale() {
 		dsl.clickRadio("elementosForm:sexo:0");
 	}
-	
-	public void setFavoriteFoodPizza(){
+
+	public void setFavoriteFoodPizza() {
 		dsl.clickButtonId("elementosForm:comidaFavorita:2");
 	}
-	public void setFavoriteFoodCarne(){
+
+	public void setFavoriteFoodCarne() {
 		dsl.clickButtonId("elementosForm:comidaFavorita:0");
 	}
-	public void setFavoriteFoodVeg(){
+
+	public void setFavoriteFoodVeg() {
 		dsl.clickButtonId("elementosForm:comidaFavorita:3");
 	}
-	
+
 	public void setEducationalLevel(String value) {
 		dsl.selectComboVisibleTxt("elementosForm:escolaridade", value);
 	}
-	
+
 	public void setFavoriteSport(String sport) {
 		setFavoriteSports(sport);
 	}
 
 	public void setFavoriteSports(String... values) {
-		for (String sport: values)
+		for (String sport : values)
 			dsl.selectComboVisibleTxt("elementosForm:esportes", sport);
 	}
-	
+
 	public void register() {
 		dsl.clickButtonId("elementosForm:cadastrar");
 	}
-	
+
 	public String getResults() {
 		return dsl.getTextXPath("//*[@id=\"resultado\"]/span");
 	}

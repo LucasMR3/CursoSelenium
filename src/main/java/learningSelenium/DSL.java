@@ -122,13 +122,14 @@ public class DSL {
 			// TODO: handle exception
 		}
 	}
+
 	//////////////////////// ALERT /////////////////////////
-	public void acceptAlert (){
+	public void acceptAlert() {
 		Alert alert = driver.switchTo().alert();
 		alert.accept();
 	}
-	
-	public void dismissAlert (){
+
+	public void dismissAlert() {
 		Alert alert = driver.switchTo().alert();
 		alert.dismiss();
 	}
